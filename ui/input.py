@@ -10,7 +10,7 @@ def create_custom_input():
     print("input 프로세스를 생성합니다.")
     pid = os.fork()
     if pid == 0:
-        input()
+        custom_input()
         pass
     else:
         return pid
