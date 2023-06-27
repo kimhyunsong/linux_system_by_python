@@ -36,10 +36,10 @@ except KeyboardInterrupt:
     print("KeyboardInterrupt: 프로세스를 종료합니다.")
 
 # 자식 프로세스들을 종료시키고 좀비 프로세스 방지
-os.kill(server_pid, signal.SIGTERM)
-os.kill(webserver_pid, signal.SIGTERM)
-os.kill(input_pid, signal.SIGTERM)
-os.kill(gui_pid, signal.SIGTERM)
+# os.kill(server_pid, signal.SIGTERM)
+# os.kill(webserver_pid, signal.SIGTERM)
+# os.kill(input_pid, signal.SIGTERM)
+# os.kill(gui_pid, signal.SIGTERM)
 
 _, _ = os.waitpid(server_pid, 0)
 _, _ = os.waitpid(webserver_pid, 0)

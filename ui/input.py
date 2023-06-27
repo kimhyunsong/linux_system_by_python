@@ -1,7 +1,9 @@
 from time import sleep
 import os, prctl, signal, threading, time
-from .command_thread import toy_loop
+from .command_thread import toy_loop, global_message
+lock = threading.Lock()
 #Threads function
+
 def command_thread():
     print("커맨드 입력을 시작합니다.")
     toy_loop()
@@ -10,8 +12,17 @@ def command_thread():
 
 def sensor_thread():
     print("camera service thread")
+    global global_message
     while True:
-        time.sleep(5000)
+        # lock.acquire()
+        # try:
+        #     for i in range(len(global_message)):
+        #         print(global_message[i])
+        #         time.sleep(500)
+        # finally:
+        #     lock.release()
+        # GIL때문에 안깨는것처럼 보임
+        time.sleep(1000)
 
 
 def segfault_handler(sig_num, sig_frame):
