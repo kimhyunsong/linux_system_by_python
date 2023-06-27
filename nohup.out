@@ -1,0 +1,15 @@
+[14448:14448:0626/231807.510516:ERROR:ozone_platform_x11.cc(239)] Missing X server or $DISPLAY
+[14448:14448:0626/231807.510571:ERROR:env.cc(255)] The platform failed to initialize.  Exiting.
+2023/06/26 23:18:08 timeout
+메인함수를 시작합니다
+시스템 서버 프로세스 생성 함수 호출합니다
+Traceback (most recent call last):
+  File "/home/ssong/system_programming/main.py", line 19, in <module>
+    return_val = signal.signal(signal.SIGCHID, sigchldHandler)
+AttributeError: module 'signal' has no attribute 'SIGCHID'. Did you mean: 'SIGCHLD'?
+메인함수를 시작합니다
+시스템 서버 프로세스 생성 함수 호출합니다
+Traceback (most recent call last):
+  File "/home/ssong/system_programming/main.py", line 19, in <module>
+    return_val = signal.signal(signal.SIGCHID, sigchldHandler)
+AttributeError: module 'signal' has no attribute 'SIGCHID'. Did you mean: 'SIGCHLD'?
