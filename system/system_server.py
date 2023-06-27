@@ -1,5 +1,6 @@
 from time import sleep
 import os, prctl, signal, time, threading
+from ctypes import *
 
 count = 0
 #Threads function
@@ -20,6 +21,9 @@ def disk_service_thread():
 
 def camera_service_thread():
     print("camera service thread")
+    # cpp ctypes로 가져오기 실패
+    lib = CDLL("/home/ssong/system_programming/system/HAL/camera_HAL.so")
+    lib.toy_camera_open()
     while True:
         time.sleep(5000)
 
