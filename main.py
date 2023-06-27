@@ -13,7 +13,7 @@ def sigchldHandler(signum, frame):
             pid, status = os.waitpid(-1, os.WNOHANG)
             if pid <= 0:
                 break
-            print(f'handler: Reaped child {pid}')
+            print(f'handler: child {pid} 이 죽었습니다.')
         except OSError:
             break
 

@@ -1,10 +1,18 @@
 from time import sleep
-import os, prctl
+import os, prctl, signal, threading, time
+from .command_thread import toy_loop
+#Threads function
+def command_thread():
+    print("커맨드 입력을 시작합니다.")
+    toy_loop()
+    pass
 
 
-import signal
-import traceback
-import sys
+def sensor_thread():
+    print("camera service thread")
+    while True:
+        time.sleep(5000)
+
 
 def segfault_handler(sig_num, sig_frame):
     caller_address = str(sig_frame)
@@ -18,6 +26,12 @@ def segfault_handler(sig_num, sig_frame):
 
 def custom_input():
     print("input 프로세스를 실행합니다.")
+    commandThead = threading.Thread(target=command_thread)
+    sensorThead = threading.Thread(target=sensor_thread)
+    Threads = [commandThead, sensorThead]
+    for thread in Threads:
+        thread.start()
+
     signal.signal(signal.SIGSEGV, segfault_handler)
     while True:
         sleep(1)

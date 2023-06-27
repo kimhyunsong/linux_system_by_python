@@ -1,7 +1,32 @@
 from time import sleep
-import os, prctl, signal, time
+import os, prctl, signal, time, threading
 
 count = 0
+#Threads function
+def watchdog_thread():
+    print("watchdog thread")
+    while True:
+        time.sleep(5000)
+
+def monitor_thread():
+    print("monitor thread")
+    while True:
+        time.sleep(5000)
+
+def disk_service_thread():
+    print("disk service thread")
+    while True:
+        time.sleep(5000)
+
+def camera_service_thread():
+    print("camera service thread")
+    while True:
+        time.sleep(5000)
+
+
+
+
+
 def timer_expire_signal_handler(signum, frame):
     global count
     # print(f'timer_expire_signal_handler : {count}')
@@ -15,7 +40,13 @@ def set_timer(interval):
 
 def system_server():
     print("system_server 프로세스 호출")
-
+    watchdogThread = threading.Thread(target=watchdog_thread)
+    monitorThread = threading.Thread(target=monitor_thread)
+    diskServiceThread = threading.Thread(target=disk_service_thread)
+    cameraServiceThread = threading.Thread(target=camera_service_thread)
+    Threads = [watchdogThread, monitorThread, diskServiceThread, cameraServiceThread]
+    for thread in Threads:
+        thread.start()
     while True:
         set_timer(5)
         time.sleep(5000)
