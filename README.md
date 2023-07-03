@@ -12,7 +12,8 @@ python3 main.py
 ```
 
 # 시스템 아키텍처
-![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/9738b977-0bde-4067-98c2-ed6c9181b271)
+![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/21f66127-5ff2-4785-b730-438504ad2cf1)
+
 
 
 
