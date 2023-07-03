@@ -1,6 +1,7 @@
 import os, threading
 
-lock = threading.Lock()
+# from rpython.rlib import rthread
+mutex = threading.Lock()
 global_message =''
 
 def toy_send(args):
@@ -11,9 +12,10 @@ def toy_exit(args):
     return 0
 
 def toy_mutex(args):
-    with lock:
-        global global_message
-        global_message = args[1]
+    mutex.acquire()
+    global global_message
+    global_message = args[1]
+    mutex.release()
     return 1
 
 def toy_shell(args):

@@ -1,7 +1,11 @@
-from system.system_server import create_system_server
-from web_server.web_server import create_web_server
-from ui.gui import create_gui
-from ui.input import create_custom_input
+import sys
+sys.path.append('/home/ssong/system_programming/system')
+sys.path.append('/home/ssong/system_programming/web_server')
+sys.path.append('/home/ssong/system_programming/ui')
+from system_server import create_system_server
+from web_server import create_web_server
+from gui import create_gui
+from input import create_custom_input
 import os
 import signal
 
@@ -13,7 +17,7 @@ def sigchldHandler(signum, frame):
             pid, status = os.waitpid(-1, os.WNOHANG)
             if pid <= 0:
                 break
-            print(f'handler: child {pid} 이 죽었습니다.')
+            print('handler: child {}이 죽었습니다.'.format(pid))
         except OSError:
             break
 

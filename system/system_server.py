@@ -1,23 +1,30 @@
+import sys 
+sys.path.append('/home/ssong/.local/lib/python3.10/site-packages')
+import pyprctl
 from time import sleep
-import os, prctl, signal, time, threading
+import os, signal, time, threading
 from ctypes import *
-
+import pyprctl
 count = 0
 #Threads function
 def watchdog_thread():
     print("watchdog thread")
     while True:
-        time.sleep(5000)
+        time.sleep(5)
 
 def monitor_thread():
     print("monitor thread")
     while True:
-        time.sleep(5000)
+        time.sleep(5)
 
 def disk_service_thread():
     print("disk service thread")
+    cmd = "df -h ./"
+    
     while True:
-        time.sleep(5000)
+        output = os.popen(cmd, "r").read()
+        print(output)
+        time.sleep(5)
 
 def camera_service_thread():
     print("camera service thread")
@@ -25,7 +32,8 @@ def camera_service_thread():
     lib = CDLL("/home/ssong/system_programming/system/HAL/camera_HAL.so")
     lib.toy_camera_open()
     while True:
-        time.sleep(5000)
+        time.sleep(5)
+
 
 
 
@@ -53,15 +61,15 @@ def system_server():
         thread.start()
     while True:
         set_timer(5)
-        time.sleep(5000)
-    return
+        time.sleep(1)
+    
 
 
 def create_system_server():
     print("시스템 서버를 생성합니다.")
     pid = os.fork()
     if pid == 0:
-        prctl.set_name("system_server")
+        pyprctl.set_name("system_server")
         system_server()
     else:
         return pid
