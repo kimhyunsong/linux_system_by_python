@@ -1,7 +1,7 @@
 import sys
-sys.path.append('/home/ssong/system_programming/system')
-sys.path.append('/home/ssong/system_programming/web_server')
-sys.path.append('/home/ssong/system_programming/ui')
+sys.path.append('/home/ssong/linux_system_by_python/system')
+sys.path.append('/home/ssong/linux_system_by_python/web_server')
+sys.path.append('/home/ssong/linux_system_by_python/ui')
 from system_server import create_system_server
 from web_server import create_web_server
 from gui import create_gui

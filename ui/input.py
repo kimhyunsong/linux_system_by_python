@@ -2,7 +2,7 @@ from time import sleep
 import os, signal, threading, time #prctl,
 import sys 
 sys.path.append('/home/ssong/.local/lib/python3.10/site-packages')
-import pyprctl
+import prctl
 from command_thread import toy_loop, global_message
 # from rpython.rlib import rthread
 mutex = threading.Lock()
@@ -54,7 +54,7 @@ def custom_input():
 
 def create_custom_input():
     print("input 프로세스를 생성합니다.")
-    pyprctl.set_name("input")
+    prctl.set_name("input")
     pid = os.fork()
     if pid == 0:
         custom_input()

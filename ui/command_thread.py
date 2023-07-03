@@ -16,7 +16,7 @@ def toy_message_queue(args):
         channel.basic_publish(exchange='',
                       routing_key='MQ',
                       body=msg_type)
-        connection.close()
+        # connection.close()
     return 
 
 
