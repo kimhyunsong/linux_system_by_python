@@ -6,8 +6,7 @@ from system_server import create_system_server
 from web_server import create_web_server
 from gui import create_gui
 from input import create_custom_input
-import os
-import signal
+import os, signal, pika
 
 def sigchldHandler(signum, frame):
     print('handler: Caught SIGCHLD')
@@ -31,6 +30,13 @@ webserver_pid = create_web_server()
 input_pid = create_custom_input()
 gui_pid = create_gui()
 
+
+
+
+# 메시지 큐 생성
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.queue_declare(queue='MQ')
 # 부모 프로세스가 자식 프로세스의 종료를 기다림
 try:
     while True:

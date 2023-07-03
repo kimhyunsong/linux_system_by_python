@@ -52,6 +52,9 @@ def set_timer(interval):
 
 def system_server():
     print("system_server 프로세스 호출")
+
+
+
     watchdogThread = threading.Thread(target=watchdog_thread)
     monitorThread = threading.Thread(target=monitor_thread)
     diskServiceThread = threading.Thread(target=disk_service_thread)

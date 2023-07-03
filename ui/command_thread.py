@@ -1,5 +1,7 @@
-import os, threading
+import os, threading, pika
 
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
 # from rpython.rlib import rthread
 mutex = threading.Lock()
 global_message =''
@@ -7,6 +9,16 @@ global_message =''
 def toy_send(args):
     print("send message:", args[1])
     return 1
+
+def toy_message_queue(args):
+    if args[1] == "camera":
+        msg_type = args[2]
+        channel.basic_publish(exchange='',
+                      routing_key='MQ',
+                      body=msg_type)
+        connection.close()
+    return 
+
 
 def toy_exit(args):
     return 0
@@ -62,12 +74,13 @@ def toy_loop():
         if not status:
             break
 
-builtin_str = ["send", "sh", "exit", "mu"]
+builtin_str = ["send", "sh", "exit", "mu", "mq"]
 
 builtin_func = {
     "send": toy_send,
     "sh": toy_shell,
     "exit": toy_exit,
-    "mu": toy_mutex
+    "mu": toy_mutex,
+    "mq" : toy_message_queue
 }
 
