@@ -12,7 +12,8 @@ python3 main.py
 ```
 
 # 시스템 아키텍처
-![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/9738b977-0bde-4067-98c2-ed6c9181b271)
+![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/21f66127-5ff2-4785-b730-438504ad2cf1)
+
 
 
 
@@ -25,3 +26,7 @@ python3 main.py
 
 # 실행 callstack
 ![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/1566580f-810d-45ea-9381-ca0b33d99503)
+
+
+# RabbitMQ 
+![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/fa3b2e3f-5e6d-46c5-9975-8d50616fc1a8)
