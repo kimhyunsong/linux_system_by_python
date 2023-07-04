@@ -2,6 +2,7 @@
 
 # 시작하기 
 ```
+# RabbitMQ docker run이 필요합니다. 
 git clone https://github.com/kimhyunsong/linux_system_by_python.git
 # filebrowser 설치
 curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
@@ -15,18 +16,8 @@ python3 main.py
 ![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/21f66127-5ff2-4785-b730-438504ad2cf1)
 
 
-
-
-# 기능
-
-
-
-
-
-
 # 실행 callstack
 ![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/1566580f-810d-45ea-9381-ca0b33d99503)
 
 
-# RabbitMQ 
-![image](https://github.com/kimhyunsong/linux_system_by_python/assets/87460502/fa3b2e3f-5e6d-46c5-9975-8d50616fc1a8)
+
