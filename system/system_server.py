@@ -6,17 +6,33 @@ import os, signal, time, threading
 from ctypes import *
 import pika
 
+
+# RabbitMQ settings
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 channel.queue_declare(queue='hello')
 count = 0
 
-
 def receive_message(ch, method, properties, body):
-    print(f'토끼의 메시지 : {body}')
+    print(f'메시지 : {body}')
+    
 channel.basic_consume(queue= 'MQ' , 
                       auto_ack= True , 
                       on_message_callback=receive_message)
+
+
+
+# inotify settings
+import pyinotify
+# 이벤트 핸들러 클래스 정의
+class EventHandler(pyinotify.ProcessEvent):
+    def process_default(self, event):
+        cmd = "df -h ./"
+        # 파일 변경 이벤트 처리
+        print("파일 생성됨:", event.pathname)
+        output = os.popen(cmd, "r").read()
+        print(output)
+
 
 
 #Threads function
@@ -32,11 +48,18 @@ def monitor_thread():
 
 def disk_service_thread():
     print("disk service thread")
-    cmd = "df -h ./"
     
+    # inotify 인스턴스 생성
+    wm = pyinotify.WatchManager()
+
+    # 이벤트 핸들러와 마스크 설정
+    handler = EventHandler()
+    notifier = pyinotify.Notifier(wm, handler)
+
+    # 모니터링할 디렉토리 및 이벤트 마스크 설정
+    wm.add_watch('/home/ssong/linux_system_by_python', pyinotify.IN_CREATE)
     while True:
-        # output = os.popen(cmd, "r").read()
-        # print(output)
+        notifier.loop()
         time.sleep(5)
 
 def camera_service_thread():
